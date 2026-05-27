@@ -6,7 +6,7 @@ const STATUS_STYLES = {
     warn: { text: "text-primary", bar: "bg-primary-container", label: "Caution" },
 }
 
-export const BudgetCategoryCard = ({ icon, name, spent, limit, status = "safe" }) => {
+export const BudgetCategoryCard = ({ icon, name, spent, limit, status = "safe", color, onEdit }) => {
     const pct = Math.min((spent / limit) * 100, 100)
     const styles = STATUS_STYLES[status]
     const balance = limit - spent
@@ -23,7 +23,11 @@ export const BudgetCategoryCard = ({ icon, name, spent, limit, status = "safe" }
                         <span className={`text-body-sm ${styles.text}`}>{styles.label}</span>
                     </div>
                 </div>
-                <button className="text-on-surface-variant hover:text-white">
+                {/* ← tres puntitos */}
+                <button
+                    onClick={onEdit}
+                    className="text-on-surface-variant hover:text-white transition-colors cursor-pointer"
+                >
                     <span className="material-symbols-outlined">more_vert</span>
                 </button>
             </div>
